@@ -16,7 +16,7 @@ export const EmbedVideo = () => {
                     </AspectRatio>
                 </Box>
                 <Text fontWeight="700" fontSize="30px" width="732px">
-                    Wubba lubba dub dub! Divirta-se com os episódios dessa animação que é o cúmulo da loucura.
+                    Wubba lubba dub dub! Have fun with the episodes of this animation that is the height of madness.
                 </Text>
             </Flex>
         </Stack>

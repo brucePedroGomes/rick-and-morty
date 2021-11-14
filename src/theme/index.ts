@@ -4,6 +4,6 @@ export const theme = extendTheme({
     initialColorMode: 'dark',
     useSystemColorMode: false,
     colors: {
-        rickBlue: '#9ED5F1',
+        rickGreen: '#24FE00',
     },
 })

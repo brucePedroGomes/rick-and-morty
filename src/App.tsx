@@ -10,8 +10,9 @@ import { Header } from './Components/Header'
 export const App = () => (
     <ChakraProvider theme={theme}>
         <ApolloProvider client={client}>
-            <Header />
-            <Routes />
+            <Routes>
+                <Header />
+            </Routes>
         </ApolloProvider>
     </ChakraProvider>
 )

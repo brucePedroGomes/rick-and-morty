@@ -3,9 +3,10 @@ import { Characters } from './Pages/Characters'
 import { Episodes } from './Pages/Episodes'
 import { Home } from './Pages/Home'
 
-export const Routes = () => {
+export const Routes: React.FC = ({ children }) => {
     return (
         <Router>
+            {children}
             <BrowserRoutes>
                 <Route path="/" element={<Home />} />
                 <Route path="/characters" element={<Characters />} />
