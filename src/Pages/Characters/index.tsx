@@ -1,11 +1,11 @@
 import { useQuery } from '@apollo/client'
-import { Stack, Input, Flex, Text, Image, Box, Grid, Skeleton } from '@chakra-ui/react'
+import { Stack, Input, Flex, Text, Image, Box, Grid } from '@chakra-ui/react'
 import { useState } from 'react'
 import { GET_CHARACTES } from './query'
 import { GetCharactes, GetCharactesVariables } from './__generated__/GetCharactes'
 
-import ReactPaginate from 'react-paginate'
 import { SkeletonItem } from './Skeleton'
+import { Paginator } from './Paginator'
 
 export const Characters = () => {
     const [page, setPage] = useState<number>(1)
@@ -16,12 +16,8 @@ export const Characters = () => {
         },
     })
 
-    const handleClick = ({ selected }: { selected: number }) => {
-        setPage(selected)
-    }
-
     return (
-        <Stack background="rickBlue">
+        <Stack>
             <Flex justifyContent="space-between" padding="60px">
                 <Text fontSize="40px" fontWeight="700">
                     Characters
@@ -58,17 +54,7 @@ export const Characters = () => {
                     </>
                 )}
             </Grid>
-            <Box display="flex" alignItems="center" flexDirection="row">
-                <ReactPaginate
-                    breakLabel="..."
-                    nextLabel="next >"
-                    onPageChange={handleClick}
-                    pageRangeDisplayed={5}
-                    pageCount={data?.characters?.info?.count ?? 0}
-                    previousLabel="< previous"
-                    marginPagesDisplayed={1}
-                />
-            </Box>
+            <Paginator page={page} setPage={setPage} pagesQuantity={data?.characters?.info?.pages ?? 0} />
         </Stack>
     )
 }
