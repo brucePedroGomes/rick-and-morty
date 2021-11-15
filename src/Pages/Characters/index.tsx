@@ -18,14 +18,17 @@ export const Characters = () => {
 
     return (
         <Stack>
-            <Flex justifyContent="space-between" padding="60px">
-                <Text fontSize="40px" fontWeight="700">
-                    Characters
-                </Text>
-                <Input w="703px" placeholder="search..." h="57px" />
+            <Flex marginTop="30px" justifyContent="space-between" padding="60px">
+                <Input
+                    w="703px"
+                    placeholder="search..."
+                    h="57px"
+                    borderColor="green.300"
+                    _placeholder={{ color: 'green.300' }}
+                />
                 <Stack />
             </Flex>
-            <Grid templateColumns="repeat(5, 1fr)" gap={6} padding="20px">
+            <Grid templateColumns="repeat(5, 1fr)" gap={1} padding="20px 40px">
                 {loading ? (
                     <>
                         {[...Array(20)].map((_) => (

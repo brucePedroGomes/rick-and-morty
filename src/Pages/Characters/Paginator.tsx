@@ -46,9 +46,21 @@ export const Paginator: React.FC<Props> = ({ page, pagesQuantity, setPage }) => 
         separatorStyles={separatorStyles}
     >
         <Container align="center" justify="space-between" w="full" p={4}>
-            <Previous>Previous</Previous>
+            <Previous
+                _hover={{
+                    bg: 'green.300',
+                }}
+            >
+                Previous
+            </Previous>
             <PageGroup isInline align="center" />
-            <Next>Next</Next>
+            <Next
+                _hover={{
+                    bg: 'green.300',
+                }}
+            >
+                Next
+            </Next>
         </Container>
     </ChakraPaginator>
 )
