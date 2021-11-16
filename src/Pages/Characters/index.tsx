@@ -1,20 +1,32 @@
 import { useQuery } from '@apollo/client'
 import { Stack, Input, Flex, Text, Image, Box, Grid } from '@chakra-ui/react'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { GET_CHARACTES } from './query'
 import { GetCharactes, GetCharactesVariables } from './__generated__/GetCharactes'
+import debounce from 'lodash.debounce'
 
 import { SkeletonItem } from './Skeleton'
 import { Paginator } from './Paginator'
+import { EmptyState } from './EmptyState'
 
 export const Characters = () => {
     const [page, setPage] = useState<number>(1)
+    const [name, setName] = useState<string>('rick')
 
     const { data, loading } = useQuery<GetCharactes, GetCharactesVariables>(GET_CHARACTES, {
         variables: {
             page,
+            name,
         },
     })
+
+    const debouncedChangeHandler = useMemo(
+        () =>
+            debounce((event: React.ChangeEvent<HTMLInputElement>) => {
+                setName(event.target.value)
+            }, 500),
+        []
+    )
 
     return (
         <Stack>
@@ -24,15 +36,18 @@ export const Characters = () => {
                     placeholder="search..."
                     h="57px"
                     borderColor="green.300"
+                    onChange={debouncedChangeHandler}
                     _placeholder={{ color: 'green.300' }}
+                    type="search"
                 />
                 <Stack />
             </Flex>
+            {!data?.characters?.results && !loading && <EmptyState />}
             <Grid templateColumns="repeat(5, 1fr)" gap={1} padding="20px 40px">
                 {loading ? (
                     <>
-                        {[...Array(20)].map((_) => (
-                            <SkeletonItem />
+                        {[...Array(20)].map((_, i) => (
+                            <SkeletonItem key={i} />
                         ))}
                     </>
                 ) : (
