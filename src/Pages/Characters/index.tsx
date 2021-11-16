@@ -11,7 +11,7 @@ import { EmptyState } from './EmptyState'
 
 export const Characters = () => {
     const [page, setPage] = useState<number>(1)
-    const [name, setName] = useState<string>('rick')
+    const [name, setName] = useState<string>('')
 
     const { data, loading } = useQuery<GetCharactes, GetCharactesVariables>(GET_CHARACTES, {
         variables: {
