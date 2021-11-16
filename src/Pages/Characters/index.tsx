@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { Stack, Input, Flex, Text, Image, Box, Grid } from '@chakra-ui/react'
 import { useMemo, useState } from 'react'
-import { GET_CHARACTES } from './query'
+import { GET_CHARACTERS } from './query'
 import { GetCharactes, GetCharactesVariables } from './__generated__/GetCharactes'
 import debounce from 'lodash.debounce'
 
@@ -13,7 +13,7 @@ export const Characters = () => {
     const [page, setPage] = useState<number>(1)
     const [name, setName] = useState<string>('')
 
-    const { data, loading } = useQuery<GetCharactes, GetCharactesVariables>(GET_CHARACTES, {
+    const { data, loading } = useQuery<GetCharactes, GetCharactesVariables>(GET_CHARACTERS, {
         variables: {
             page,
             name,
