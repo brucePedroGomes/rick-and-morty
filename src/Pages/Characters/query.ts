@@ -6,24 +6,8 @@ export const GET_CHARACTES = gql`
             results {
                 id
                 name
-                status
-                species
-                type
-                gender
                 image
                 created
-                location {
-                    id
-                    name
-                }
-                origin {
-                    id
-                    name
-                }
-                episode {
-                    id
-                    name
-                }
             }
             info {
                 count
