@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { Stack, Input, Flex, Text, Image, Box, Grid } from '@chakra-ui/react'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { GET_CHARACTERS } from './query'
 import { GetCharactes, GetCharactesVariables } from './__generated__/GetCharactes'
 import debounce from 'lodash.debounce'
@@ -12,6 +12,7 @@ import { EmptyState } from './EmptyState'
 export const Characters = () => {
     const [page, setPage] = useState<number>(1)
     const [name, setName] = useState<string>('')
+    const [totalPage, setTotalPage] = useState<number>(0)
 
     const { data, loading } = useQuery<GetCharactes, GetCharactesVariables>(GET_CHARACTERS, {
         variables: {
@@ -20,11 +21,17 @@ export const Characters = () => {
         },
     })
 
+    useEffect(() => {
+        if (data?.characters?.info?.pages) {
+            setTotalPage(data.characters.info.pages)
+        }
+    }, [data?.characters?.info?.pages])
+
     const debouncedChangeHandler = useMemo(
         () =>
             debounce((event: React.ChangeEvent<HTMLInputElement>) => {
                 setName(event.target.value)
-            }, 500),
+            }, 300),
         []
     )
 
@@ -72,7 +79,7 @@ export const Characters = () => {
                     </>
                 )}
             </Grid>
-            <Paginator page={page} setPage={setPage} pagesQuantity={data?.characters?.info?.pages ?? 0} />
+            <Paginator page={page} setPage={setPage} pagesQuantity={totalPage} />
         </Stack>
     )
 }
