@@ -11,7 +11,7 @@ export const App = () => (
     <ChakraProvider theme={theme}>
         <ApolloProvider client={client}>
             <Routes>
-                <Header />
+                <Header /> 
             </Routes>
         </ApolloProvider>
     </ChakraProvider>

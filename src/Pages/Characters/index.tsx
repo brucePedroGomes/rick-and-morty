@@ -35,6 +35,8 @@ export const Characters = () => {
         []
     )
 
+
+
     return (
         <Stack>
             <Flex marginTop="30px" justifyContent="space-between" padding="60px">
